@@ -14,10 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 //사용자가 요청 -> DATA로 응답 -> REST CONTROLLER
 @RestController
 public class HttpControllerTest {
+	
+	private static final String TAG = "HttpControllerTest:";
+	
+	//localhost:8000/blog/http/lombok
+	@GetMapping("/http/lombok")
+	public String lombokTest() {
+		Member m = new Member(1, "kim", "1234", "email");
+		System.out.println(TAG+"getter: "+m.getId());
+		m.setId(1234);
+		System.out.println(TAG+"setter: "+m.getId());
+		return "lombok test fin";
+	}
 
 	//http://localhost:8080/http/get -> select
 	@GetMapping("/http/get")
 	public String getTest(Member m) {
+		
 		return "Get 요청: "+m.getId()+","+m.getUsername()+","+m.getPassword()+","+m.getEmail();
 		
 		//http://localhost:8080/http/get?id=1 -> ?id=1 < 쿼리스트링
